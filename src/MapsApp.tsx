@@ -1,11 +1,11 @@
+import './styles.css';
 import { PlacesProvider } from "./context";
-
-import React from 'react'
+import { HomeScreen } from "./screens/HomeScreen";
 
 export const MapsApp = () => {
   return (
     <PlacesProvider>
-        <h1>Hola mundo, denuevo</h1>
+        <HomeScreen/>
     </PlacesProvider>
 )
 }
