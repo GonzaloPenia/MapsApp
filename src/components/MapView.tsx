@@ -1,22 +1,26 @@
 import { useContext, useLayoutEffect, useRef } from 'react'
-import { PlacesContext } from '../context'
-import {Map} from 'mapbox-gl';
+import { MapContext, PlacesContext } from '../context'
+import { Map } from 'mapbox-gl';
 import { Loading } from './Loading'
 
 export const MapView = () => {
 
-  //USAMOS EL CONTEXTO --> PlacesContext.ts
-  const {isLoading, userLocation} = useContext(PlacesContext);
-  const mapDiv = useRef<HTMLDivElement>(null)
+  
+  const {isLoading, userLocation} = useContext (PlacesContext);
+  const {setMap} = useContext (MapContext);
+  const mapDiv = useRef<HTMLDivElement> (null);
+
 
   useLayoutEffect(() => {
     if(!isLoading){
       const map = new Map({
         container: mapDiv.current!, // container ID
-        style: 'mapbox://styles/mapbox/streets-v12', // style URL
+        style: 'mapbox://styles/mapbox/dark-v11', // style URL
         center: userLocation, // starting position [lng, lat]
         zoom: 9, // starting zoom
       });
+
+      setMap(map);
     }
     
   }, [isLoading])
@@ -25,9 +29,10 @@ export const MapView = () => {
     return(<Loading/>)
   }
 
-
-
   return (
+
+    
+
     <div ref={mapDiv}
           style={{
             height:'100vh',
