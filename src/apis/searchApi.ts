@@ -5,8 +5,9 @@ const searchApi = axios.create({
         params: {
                 limit: 5,
                 language: 'es',
-                access_token: 'pk.eyJ1IjoiZ29uemFsb3BlbmlhIiwiYSI6ImNtYjdncnplajBhZTAycW9rbzcyZGMxdTIifQ.CglS1-EJLgG9dwCyTBhIzw'
+                access_token: 'pk.eyJ1IjoiZ29uemFsb3BlbmlhIiwiYSI6ImNtYmIyZXU1dzFlbnYycnE1a2hsZ3E0bmwifQ.pdEdSAzuH_xEE2md9ZwqLg'
         }
 })
 
 export default searchApi;
+

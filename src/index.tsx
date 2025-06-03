@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { MapsApp } from './MapsApp';
 import mapboxgl from 'mapbox-gl'; // or "const mapboxgl = require('mapbox-gl');"
 
-mapboxgl.accessToken = 'pk.eyJ1IjoiZ29uemFsb3BlbmlhIiwiYSI6ImNtYjdncnplajBhZTAycW9rbzcyZGMxdTIifQ.CglS1-EJLgG9dwCyTBhIzw';
+mapboxgl.accessToken = 'pk.eyJ1IjoiZ29uemFsb3BlbmlhIiwiYSI6ImNtYmIyZXU1dzFlbnYycnE1a2hsZ3E0bmwifQ.pdEdSAzuH_xEE2md9ZwqLg'
 
 if(!navigator.geolocation){
   alert('Tu navegador no dispone de acceso a geolocalizacion');

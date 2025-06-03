@@ -36,22 +36,24 @@ export const PlacesProvider = ({children} : Props) => {
   }, [])
   
   
-  
-  const searchPlacesByTerm = async (query : string)  : Promise<Feature[]> => { 
-    if(query.length === 0) return []; //TODO: limpiar state
-    if(!state.userLocation) throw new Error ('La ubicacion del usuario no esta disponible');
+    const searchPlacesByTerm = async( query: string ): Promise<Feature[]> => {
+        if ( query.length === 0 ) {
+            dispatch({ type: 'setPlaces', payload: [] });
+            return [];
+        }
+        if ( !state.userLocation ) throw new Error('No hay ubicación del usuario');
 
-    dispatch({type: 'setLoadingPlaces'});
+        dispatch({ type: 'setLoadingPlaces' });
 
-    const resp = await searchApi.get<PlacesResponse>(`/${query }.json`, {
-      params: {
-        proximity: state.userLocation.join(',')
-      }
-    });
+        const resp = await searchApi.get<PlacesResponse>(`/${ query }.json`, {
+            params: {
+                proximity: state.userLocation.join(',')
+            }
+        });
 
-    dispatch({type: 'setPlaces', payload: resp.data.features});
-    return resp.data.features;
-  }
+        dispatch({ type: 'setPlaces', payload: resp.data.features });
+        return resp.data.features;
+    }
 
 
   return (

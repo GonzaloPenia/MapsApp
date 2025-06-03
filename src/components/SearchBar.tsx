@@ -8,18 +8,14 @@ export const SearchBar = () => {
 
   const {searchPlacesByTerm} = useContext(PlacesContext);
   
-  const onQueryChanged = ( event : ChangeEvent<HTMLInputElement> ) => { 
-    if(debounceRef.current){
-      clearTimeout(debounceRef.current);
+    const onQueryChanged = ( event: ChangeEvent<HTMLInputElement> ) => {
+        if ( debounceRef.current )
+            clearTimeout( debounceRef.current );
+
+        debounceRef.current = setTimeout(() => {
+            searchPlacesByTerm( event.target.value );
+        }, 350 );
     }
-
-    debounceRef.current = setTimeout( () => {
-      //console.log('Debounce: ', event.target.value);
-      searchPlacesByTerm( event.target.value);
-    }, 500);
-
-                      
-  }
 
 
   return (

@@ -1,14 +1,41 @@
- export interface PlacesResponse {
+export interface PlacesResponse {
         type:        string;
+        query:       string[];
         features:    Feature[];
         attribution: string;
 }
 
 export interface Feature {
-        type:       string;
-        id:         string;
-        geometry:   Geometry;
-        properties: Properties;
+        id:            string;
+        type:          string;
+        place_type:    string[];
+        relevance:     number;
+        properties:    Properties;
+        text_es:       string;
+        language_es?:  Language;
+        place_name_es: string;
+        text:          string;
+        language?:     Language;
+        place_name:    string;
+        bbox?:         number[];
+        center:        number[];
+        geometry:      Geometry;
+        context:       Context[];
+}
+
+export interface Context {
+        id:           string;
+        mapbox_id:    string;
+        wikidata?:    string;
+        short_code?:  string;
+        text_es:      string;
+        language_es?: Language;
+        text:         string;
+        language?:    Language;
+}
+
+export enum Language {
+        Es = "es",
 }
 
 export interface Geometry {
@@ -17,81 +44,8 @@ export interface Geometry {
 }
 
 export interface Properties {
-        mapbox_id:       string;
-        feature_type:    string;
-        full_address:    string;
-        name:            string;
-        name_preferred:  string;
-        coordinates:     Coordinates;
-        place_formatted: string;
-        match_code?:     MatchCode;
-        context:         Context;
-}
-
-export interface Context {
-        address?:     Address;
-        street:       Neighborhood;
-        neighborhood: Neighborhood;
-        postcode:     Neighborhood;
-        place:        Place;
-        region:       Region;
-        country:      Country;
-}
-
-export interface Address {
-        mapbox_id:      string;
-        address_number: string;
-        street_name:    string;
-        name:           string;
-}
-
-export interface Country {
-        mapbox_id:            string;
-        name:                 string;
-        wikidata_id:          string;
-        country_code:         string;
-        country_code_alpha_3: string;
-}
-
-export interface Neighborhood {
-        mapbox_id: string;
-        name:      string;
-}
-
-export interface Place {
-        mapbox_id:   string;
-        name:        string;
-        wikidata_id: string;
-}
-
-export interface Region {
-        mapbox_id:        string;
-        name:             string;
-        wikidata_id:      string;
-        region_code:      string;
-        region_code_full: string;
-}
-
-export interface Coordinates {
-        longitude:        number;
-        latitude:         number;
-        accuracy?:        string;
-        routable_points?: RoutablePoint[];
-}
-
-export interface RoutablePoint {
-        name:      string;
-        latitude:  number;
-        longitude: number;
-}
-
-export interface MatchCode {
-        address_number: string;
-        street:         string;
-        postcode:       string;
-        place:          string;
-        region:         string;
-        locality:       string;
-        country:        string;
-        confidence:     string;
+        mapbox_id?:           string;
+        wikidata?:            string;
+        accuracy?:            string;
+        "override:postcode"?: string;
 }
