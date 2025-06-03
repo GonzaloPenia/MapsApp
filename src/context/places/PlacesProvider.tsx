@@ -28,14 +28,20 @@ export const PlacesProvider = ({children} : Props) => {
   
   const [state, dispatch] = useReducer(placesReducer, INITIAL_STATE)
 
+  
+  
   useEffect(() => {
     getUserLocation()
       .then(lngLat => dispatch({type: 'setUserLocation', payload: lngLat}) )
   }, [])
   
+  
+  
   const searchPlacesByTerm = async (query : string)  : Promise<Feature[]> => { 
     if(query.length === 0) return []; //TODO: limpiar state
     if(!state.userLocation) throw new Error ('La ubicacion del usuario no esta disponible');
+
+    dispatch({type: 'setLoadingPlaces'});
 
     const resp = await searchApi.get<PlacesResponse>(`/${query }.json`, {
       params: {
@@ -43,8 +49,7 @@ export const PlacesProvider = ({children} : Props) => {
       }
     });
 
-    console.log(resp.data.features[0]);
-    
+    dispatch({type: 'setPlaces', payload: resp.data.features});
     return resp.data.features;
   }
 
