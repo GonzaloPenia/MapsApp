@@ -41,6 +41,7 @@ export const PlacesProvider = ({children} : Props) => {
             dispatch({ type: 'setPlaces', payload: [] });
             return [];
         }
+        
         if ( !state.userLocation ) throw new Error('No hay ubicación del usuario');
 
         dispatch({ type: 'setLoadingPlaces' });

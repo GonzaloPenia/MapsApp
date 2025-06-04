@@ -1,7 +1,6 @@
+import { PlacesProvider, MapProvider } from "./context";
+import { HomeScreen } from "./screens/";
 import './styles.css';
-import { PlacesProvider } from "./context";
-import { HomeScreen } from "./screens/HomeScreen";
-import { MapProvider } from './context/map/MapProvider';
 
 export const MapsApp = () => {
   return (
